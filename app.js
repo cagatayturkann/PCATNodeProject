@@ -29,15 +29,27 @@ app.get('/', async (req, res) => {
   // res.sendFile(path.resolve(__dirname, 'views/index.html')); //middleware ile index dosyasını çağırdık.
   const photos = await Photo.find({});
   res.render('index', {
-    photos
+    photos,
   });
 });
+
+app.get('/photos/:id', async (req, res) => {
+  const photo = await Photo.findById(req.params.id);
+  res.render('photo', {
+    photo,
+  });
+
+  // res.render('about');
+});
+
 app.get('/about', (req, res) => {
   res.render('about');
 });
+
 app.get('/add', (req, res) => {
   res.render('add');
 });
+
 app.post('/photos', async (req, res) => {
   await Photo.create(req.body);
   res.redirect('/');
