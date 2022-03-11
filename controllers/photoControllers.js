@@ -1,16 +1,24 @@
-const Photo = require('../models/Photo')
+const Photo = require('../models/Photo');
 const fs = require('fs');
 
 //listing all the photos from database
 exports.getAllPhotos = async (req, res) => {
-  // res.sendFile(path.resolve(__dirname, 'views/index.html')); //middleware ile index dosyasını çağırdık.
-  const photos = await Photo.find({}).sort('-dateCreated');
+  const page = req.query.page || 1; //page number user in
+  const photosPerPage = 2; //photo number per page
+  const totalPhotos = await Photo.find().countDocuments(); //returns total document number from database
+  const photos = await Photo.find({})
+    .sort('-dateCreated')
+    .skip((page - 1) * photosPerPage) //skipping first photos when user in other pages
+    .limit(photosPerPage); // photo number per page
   res.render('index', {
-    photos,
+    photos: photos,
+    current: page, //sending page number to ejs 
+    pages: Math.ceil(totalPhotos / photosPerPage), //total page number
   });
+  // res.sendFile(path.resolve(__dirname, 'views/index.html')); //middleware ile index dosyasını çağırdık.
 };
 
-//showing selected photo 
+//showing selected photo
 exports.getPhoto = async (req, res) => {
   const photo = await Photo.findById(req.params.id);
   res.render('photo', {
@@ -29,7 +37,8 @@ exports.createPhoto = async (req, res) => {
   let uploadedImage = req.files.image; //getting images
   let uploadPath = __dirname + '/../public/uploads/' + uploadedImage.name; //defining directory path for saving images
 
-  uploadedImage.mv(uploadPath, async () => { //saving photo to directory function. first parameters is path second is moving function
+  uploadedImage.mv(uploadPath, async () => {
+    //saving photo to directory function. first parameters is path second is moving function
     await Photo.create({
       ...req.body,
       image: '/uploads/' + uploadedImage.name,
@@ -38,7 +47,7 @@ exports.createPhoto = async (req, res) => {
   });
 };
 
-//editing photo 
+//editing photo
 exports.updatePhoto = async (req, res) => {
   const photo = await Photo.findOne({ _id: req.params.id });
   photo.title = req.body.title;
