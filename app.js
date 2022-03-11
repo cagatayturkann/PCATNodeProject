@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const fileUpload = require('express-fileupload');
 const methodOverride = require('method-override');
+const env = require('dotenv').config()
 const ejs = require('ejs');
 const photoController = require('./controllers/photoControllers');
 const pageController = require('./controllers/pageControllers');
@@ -9,7 +10,7 @@ const pageController = require('./controllers/pageControllers');
 const app = express();
 
 //Connect DB
-mongoose.connect('mongodb+srv://cagatayturkann:g5d7ykqtvQsfJ9A7@cluster0.iz9kv.mongodb.net/pcat-db?retryWrites=true&w=majority', {
+mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.iz9kv.mongodb.net/pcat-db?retryWrites=true&w=majority`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   // useFindAndModify: false,
