@@ -26,12 +26,12 @@
 <div>
 <h2>Installation</h2>
 <ul>
-<li>Firstly clone this project and enter the directory
-<code>git clone https://github.com/cagatayturkann/https://github.com/cagatayturkann/PCATNodeProject<br>cd PCATNodeProject</code></li>
-<li>Install all the dependencies
+<li>Firstly clone this project and enter the directory<br>
+<code>git clone https://github.com/cagatayturkann/https://github.com/cagatayturkann/PCATNodeProject</code><br><code>cd PCATNodeProject</code></li>
+<li>Install all the dependencies<br>
 <code>npm install</code></li>
 <li>Change the mongodb url inside an app.js file</li>
-<li>Run the file
+<li>Run the file<br>
 <code>npm start</code></li>
 </ul>
 </div>
