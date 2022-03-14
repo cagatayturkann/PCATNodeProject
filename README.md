@@ -24,7 +24,8 @@
 <li>Express-FileUpload for upload process</li>
 <li>Heroku for Live Deployment</li>
 </ul>
-
+</div>
+<div>
 <h2>Installation</h2>
 <ul>
 <li>Firstly clone this project and enter the directory
@@ -35,5 +36,5 @@
 <li>Run the file
 <code>npm start</code></li>
 </ul>
-
+</div>
 
