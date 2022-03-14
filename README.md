@@ -1,5 +1,3 @@
-# PCATNodeProject
-
 <h1>Project Detail</h1>
 <div>
 <p>PCAT is a simple Photo Uploading project. You can view live version from <a href="http://pcat-nodejs-application.herokuapp.com/">here</a>.</p><br>
@@ -14,7 +12,7 @@
 <li>Updating and Deleting Photo</li>
 <li>About Page</li>
 <li>Showing Photos</li>
-<ul>
+</ul>
 <p>Used technologies are:</p>
 <ul>
 <li>NodeJs for backend</li>
